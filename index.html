@@ -82,7 +82,7 @@
         }
         
         section {
-            padding: 80px 0;
+            padding: 60px 0;
         }
         
         .section-title {
@@ -122,13 +122,31 @@
         }
         
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
         
-        .logo span {
+        .logo-img {
+            height: 50px;
+            margin-right: 10px;
+            background: linear-gradient(45deg, var(--primary), var(--dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 0 15px;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
             color: var(--secondary);
         }
         
@@ -193,7 +211,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(13, 71, 161, 0.9), rgba(13, 71, 161, 0.8)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3') no-repeat center center/cover;
-            height: 100vh;
+            height: 75vh;
             display: flex;
             align-items: center;
             color: var(--light-text);
@@ -224,6 +242,7 @@
         /* About Section */
         .about {
             background-color: var(--light);
+            padding-top: 0;
         }
         
         .about-content {
@@ -445,43 +464,80 @@
             font-size: 1.2rem;
         }
         
-        /* Contact Form */
-        .contact {
-            background-color: var(--gray);
-        }
-        
-        .contact-container {
-            display: flex;
-            gap: 40px;
-        }
-        
-        .contact-form {
-            flex: 1;
+        /* Floating Form */
+        .floating-form {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
             background: white;
-            padding: 40px;
             border-radius: 10px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .floating-form.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .form-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .form-header h3 {
+            margin: 0;
+            color: white;
+        }
+        
+        .close-form {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-form:hover {
+            transform: rotate(90deg);
+        }
+        
+        .form-content {
+            padding: 20px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
             color: var(--dark);
+            font-size: 14px;
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
         
@@ -492,28 +548,50 @@
             box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.2);
         }
         
-        .contact-info-box {
-            flex: 1;
-        }
-        
-        .info-item {
+        .form-footer {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
+            justify-content: center;
+            margin-top: 10px;
         }
         
-        .info-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+        .form-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .form-btn:hover {
+            background: #e65100;
+            transform: translateY(-2px);
+        }
+        
+        .floating-form-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            margin-right: 15px;
-            flex-shrink: 0;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 999;
+            transition: var(--transition);
+        }
+        
+        .floating-form-btn:hover {
+            transform: translateY(-5px) rotate(10deg);
+            background: #e65100;
         }
         
         /* Footer */
@@ -629,72 +707,9 @@
             text-decoration: none;
         }
         
-        /* Floating Contact */
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 999;
-        }
-        
-        .floating-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .floating-btn:hover {
-            transform: translateY(-5px);
-        }
-        
-        .whatsapp {
-            background-color: #25D366;
-        }
-        
-        .phone {
-            background-color: var(--primary);
-        }
-        
-        .email {
-            background-color: var(--secondary);
-        }
-        
-        .tooltip {
-            position: absolute;
-            right: 70px;
-            background: white;
-            color: var(--text);
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 14px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        
-        .floating-btn:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
-            .about-content,
-            .contact-container {
+            .about-content {
                 flex-direction: column;
             }
             
@@ -753,7 +768,7 @@
             
             .hero {
                 height: auto;
-                padding: 120px 0 80px;
+                padding: 120px 0 60px;
             }
             
             .hero h1 {
@@ -761,11 +776,17 @@
             }
             
             section {
-                padding: 60px 0;
+                padding: 50px 0;
             }
             
             .step {
                 width: 100%;
+            }
+            
+            .floating-form {
+                width: 300px;
+                right: 10px;
+                bottom: 10px;
             }
         }
         
@@ -793,40 +814,63 @@
                 padding: 12px;
             }
             
-            .floating-contact {
+            .floating-form-btn {
                 bottom: 20px;
                 right: 20px;
-            }
-            
-            .floating-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
+            }
+            
+            .floating-form {
+                width: 90%;
+                right: 5%;
+                left: 5%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Contact Buttons -->
-    <div class="floating-contact">
-        <div class="floating-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-            <span class="tooltip">Chat on WhatsApp</span>
+    <!-- Floating Contact Form -->
+    <div class="floating-form">
+        <div class="form-header">
+            <h3>Request Consultation</h3>
+            <button class="close-form"><i class="fas fa-times"></i></button>
         </div>
-        <div class="floating-btn phone">
-            <i class="fas fa-phone"></i>
-            <span class="tooltip">+1 416-525-9960</span>
+        <div class="form-content">
+            <div class="form-group">
+                <label for="float-name">Name</label>
+                <input type="text" id="float-name" required>
+            </div>
+            <div class="form-group">
+                <label for="float-email">Email</label>
+                <input type="email" id="float-email" required>
+            </div>
+            <div class="form-group">
+                <label for="float-phone">Phone</label>
+                <input type="tel" id="float-phone">
+            </div>
+            <div class="form-group">
+                <label for="float-message">How can we help?</label>
+                <textarea id="float-message" rows="3" required></textarea>
+            </div>
+            <div class="form-footer">
+                <button class="form-btn">Submit</button>
+            </div>
         </div>
-        <div class="floating-btn email">
-            <i class="fas fa-envelope"></i>
-            <span class="tooltip">leo4165259960@gmail.com</span>
-        </div>
+    </div>
+    
+    <div class="floating-form-btn">
+        <i class="fas fa-comment-alt"></i>
     </div>
 
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">Interim<span>ceo4u</span></a>
+            <a href="#" class="logo">
+                <div class="logo-img">IC4U</div>
+                <div class="logo-text">Interim<span>ceo4u</span></div>
+            </a>
             
             <div class="mobile-toggle">
                 <i class="fas fa-bars"></i>
@@ -837,8 +881,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#process">Process</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -853,8 +896,8 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container hero-content">
-            <h1>Are You Ready To Transform Your Business?</h1>
-            <p>We are management consultants who help construction businesses scale 10x. Business consulting for leads, sales and customer retention.</p>
+            <h1>Transform Your Construction Business</h1>
+            <p>Expert management consultants helping construction companies achieve 10x growth through strategic business consulting.</p>
             <a href="#contact" class="btn">Book a Free Consultation</a>
         </div>
     </section>
@@ -867,19 +910,19 @@
                     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="CEO Leo">
                 </div>
                 <div class="about-text">
-                    <h2>We Scaled More Than 1000 Companies</h2>
-                    <p>96% of companies fail, is it smart for you to try to do this on your own?</p>
-                    <p>Leo comes with massive experience in construction consulting, taking businesses to 10x heights with over 40 years of experience as a business analyst. He is a master in creating business blueprints designed to bulldoze your competition.</p>
-                    <p>In his 40-year career, Leo has probed, scrutinized and redesigned more than 1000 companies that were doing under $2 million in revenue. Today they are doing more than $5M, $10M, or $20 million yearly.</p>
-                    <a href="#contact" class="btn">Get A Consultation</a>
+                    <h2>We've Scaled Over 1000 Companies</h2>
+                    <p>96% of companies fail - don't try to scale alone without expert guidance.</p>
+                    <p>Leo brings 40+ years of construction consulting experience, helping businesses achieve 10x growth through strategic business blueprints that outperform the competition.</p>
+                    <p>Throughout his career, Leo has transformed companies doing under $2M in revenue into businesses consistently achieving $5M, $10M, and $20M+ annually.</p>
+                    <a href="#contact" class="btn">Get Your Consultation</a>
                     
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="number">98%</div>
+                            <div class="number">100%</div>
                             <div>Success Rate</div>
                         </div>
                         <div class="stat-item">
-                            <div class="number">$20M</div>
+                            <div class="number">$5M</div>
                             <div>Avg. Client Revenue</div>
                         </div>
                         <div class="stat-item">
@@ -897,7 +940,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
-                <p>Helping You Take Control - End-to-end coaching for business owners & startups</p>
+                <p>Comprehensive solutions for construction business growth</p>
             </div>
             
             <div class="services-grid">
@@ -906,8 +949,8 @@
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="Business Process">
                     </div>
                     <div class="service-content">
-                        <h3>Business Process Re-engineering</h3>
-                        <p>Business process reengineering (BPR) is an elemental redesign process used to achieve striking improvements in quality, speed, service, output and cost. We help you map existing processes and provide tailored solutions.</p>
+                        <h3>Business Process Optimization</h3>
+                        <p>Complete redesign of operations to achieve dramatic improvements in quality, efficiency, output and cost. We map existing workflows and implement tailored solutions.</p>
                     </div>
                 </div>
                 
@@ -916,8 +959,8 @@
                         <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3" alt="Marketing">
                     </div>
                     <div class="service-content">
-                        <h3>Marketing & Sales Coaching</h3>
-                        <p>We become your partner in business development. First, we understand your current situation, break it down into urgent and important elements, address urgencies, then chart a plan that makes sense for your construction business.</p>
+                        <h3>Marketing & Sales Strategy</h3>
+                        <p>Strategic partnership in business development. We analyze your current position, prioritize critical needs, and create a customized growth roadmap for your construction business.</p>
                     </div>
                 </div>
                 
@@ -926,8 +969,8 @@
                         <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3" alt="Sell Business">
                     </div>
                     <div class="service-content">
-                        <h3>Sell My Business Coaching</h3>
-                        <p>We help you scale to $20 million in annual revenue. This customized coaching is for owners looking to sell their business after scaling it to ensure they get maximum value for their business.</p>
+                        <h3>Business Exit Strategy</h3>
+                        <p>Specialized coaching for owners preparing to sell. We help scale to $20M+ annual revenue to maximize business valuation and ensure a profitable exit.</p>
                     </div>
                 </div>
             </div>
@@ -935,11 +978,11 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="process">
+    <section id="process" class="process">
         <div class="container">
             <div class="section-title">
-                <h2>How It Works</h2>
-                <p>We help you consistently meet and exceed your goals</p>
+                <h2>Our 5-Step Process</h2>
+                <p>Proven methodology to consistently exceed business goals</p>
             </div>
             
             <div class="process-steps">
@@ -948,39 +991,39 @@
                         <i class="fas fa-coffee"></i>
                     </div>
                     <h4>Initial Consultation</h4>
-                    <p>Free coffee Zoom call to understand your business</p>
+                    <p>Free discovery call to understand your business</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <h4>Forensic Analysis</h4>
-                    <p>Detailed analysis to determine inefficiencies</p>
+                    <h4>Comprehensive Analysis</h4>
+                    <p>Detailed assessment to identify growth opportunities</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h4>Mindset Development</h4>
-                    <p>Develop the right entrepreneurial mindset</p>
+                    <h4>Strategy Development</h4>
+                    <p>Create customized growth roadmap</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h4>Community Access</h4>
-                    <p>Access to 50+ successful business owners</p>
+                    <h4>Implementation</h4>
+                    <p>Execute strategy with expert guidance</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h4>Scale to Success</h4>
-                    <p>Implement proven systems to reach $20M+</p>
+                    <h4>Scale & Optimize</h4>
+                    <p>Continuous improvement to reach $20M+</p>
                 </div>
             </div>
         </div>
@@ -990,48 +1033,48 @@
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What My Clients Say</h2>
-                <p>Hear from business owners we've helped transform</p>
+                <h2>Client Success Stories</h2>
+                <p>Hear from construction business owners we've transformed</p>
             </div>
             
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-img">
-                            <img src="susan.jpg" alt="Susan Waters">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3" alt="Susan Waters">
                         </div>
                         <div class="testimonial-info">
                             <h4>Susan Waters</h4>
                             <p>Founding Partner - WarmCozyCozy.com</p>
                         </div>
                     </div>
-                    <p>"My dad and uncle have worked with Leo for over 20 years. That relationship allowed my dad to go from struggling to having the company work for him. They finally have the quality of life they've been trying to develop for 40 years."</p>
+                    <p>"My family has worked with Leo for over 20 years. His guidance transformed our business from struggling to thriving. We now have the quality of life we've been striving for throughout our 40-year history."</p>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-img">
-                            <img src="erick.jpg" alt="Eric Powers">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3" alt="Eric Powers">
                         </div>
                         <div class="testimonial-info">
                             <h4>Eric Powers</h4>
                             <p>Owner - Condominium Tower Renovations</p>
                         </div>
                     </div>
-                    <p>"In times of crisis it's easy to see who are the leaders. Leo and his team have been true inspirations and a great source of confidence to get us through this mess. I'm confident we'll arrive on the other side much stronger."</p>
+                    <p>"During challenging times, true leadership shines. Leo and his team provided invaluable guidance and confidence to navigate difficult periods. We emerged stronger and more resilient."</p>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-img">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3" alt="Mark McSherry">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3" alt="Mark McSherry">
                         </div>
                         <div class="testimonial-info">
                             <h4>Mark McSherry</h4>
                             <p>Owner - Markelangelo's Roofing</p>
                         </div>
                     </div>
-                    <p>"I had Leo analyze my business. I enjoyed all of it, especially the bad because that's why he's there. It's like having a Yoda to help navigate what can be better and how to get your business on a rocket to success."</p>
+                    <p>"Having Leo analyze our business was transformative. His insights were like having a strategic Yoda guiding us toward optimization and sustainable growth. Highly recommended!"</p>
                 </div>
             </div>
         </div>
@@ -1040,7 +1083,7 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Let's Supercharge Your Growth</h2>
+            <h2>Ready to Scale Your Business?</h2>
             <p>Call us at +1 416-525-9960 or schedule a meeting to transform your construction business</p>
             <a href="#contact" class="btn">Schedule a Meeting</a>
         </div>
@@ -1050,8 +1093,8 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get a personal consultation from our construction management consultant</p>
+                <h2>Contact Our Team</h2>
+                <p>Get expert consultation from our construction management specialists</p>
             </div>
             
             <div class="contact-container">
@@ -1073,11 +1116,11 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">I need help with the next problem...</label>
+                            <label for="message">How can we help your business?</label>
                             <textarea id="message" rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">Request A Callback</button>
+                        <button type="submit" class="btn">Request Consultation</button>
                     </form>
                 </div>
                 
@@ -1108,7 +1151,7 @@
                         </div>
                         <div>
                             <h3>Location</h3>
-                            <p>Ontario, Canada</p>
+                            <p>Toronto, Ontario, Canada</p>
                         </div>
                     </div>
                     
@@ -1118,16 +1161,16 @@
                         </div>
                         <div>
                             <h3>Business Hours</h3>
-                            <p>Monday - Friday: 9am - 5pm</p>
-                            <p>Saturday: 10am - 2pm</p>
+                            <p>Monday-Friday: 8am-6pm</p>
+                            <p>Saturday: 9am-1pm</p>
                         </div>
                     </div>
                     
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -1139,120 +1182,95 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>We are construction management consultants who have scaled more than 1000 companies to 10x heights. 96% of companies fail - let us help you succeed.</p>
+                    <h3>About Interimceo4u</h3>
+                    <p>Construction management consultants with 40+ years experience helping companies achieve 10x growth. We've transformed over 1000 businesses.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Useful Links</h3>
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#resources">Actionable Resources</a></li>
-                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#process">Our Process</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Business Process Re-engineering</a></li>
-                        <li><a href="#">Marketing & Sales Coaching</a></li>
-                        <li><a href="#">Sell My Business Coaching</a></li>
-                        <li><a href="#">CEO Club Program</a></li>
-                        <li><a href="#">Strategic Business Analysis</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Company</h3>
+                    <h3>Legal</h3>
                     <ul class="footer-links">
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Disclaimer</a></li>
-                        <li><a href="#">Sitemap</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Subscribe Now</h3>
-                    <p>Don't miss our future updates! Get Subscribed Today!</p>
+                    <p>Get exclusive construction business insights delivered to your inbox</p>
                     <form class="subscribe-form">
-                        <input type="email" placeholder="Your mail here" required>
+                        <input type="email" placeholder="Your email address" required>
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 • Interimceo4u • Powered by <a href="#">Mapemasoftwares</a></p>
+                <p>&copy; 2023 Interimceo4u • Construction Business Consultants • All Rights Reserved</p>
             </div>
         </div>
     </footer>
 
     <script>
-          document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+        // Floating form functionality
+        const floatingForm = document.querySelector('.floating-form');
+        const floatingBtn = document.querySelector('.floating-form-btn');
+        const closeBtn = document.querySelector('.close-form');
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const message = document.getElementById("message").value.trim();
+        floatingBtn.addEventListener('click', () => {
+            floatingForm.classList.add('active');
+        });
 
-    const telegramMessage = `
-🛠️ *New Contact Request* 🛠️
+        closeBtn.addEventListener('click', () => {
+            floatingForm.classList.remove('active');
+        });
 
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-📞 *Phone:* ${phone || "Not provided"}
-📝 *Message:* ${message}
-    `;
+        // Floating form submission (mailto)
+        const floatForm = document.createElement('form');
+        floatForm.appendChild(document.querySelector('.floating-form .form-content'));
+        document.querySelector('.floating-form').insertBefore(floatForm, document.querySelector('.floating-form .form-content'));
 
-    const botToken = "7473229254:AAH6gQtxqyY32NpHpWiQ7v0GSXRxMM8UVX8";
-    const chatId = "5287071616";
+        floatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('float-name').value;
+            const email = document.getElementById('float-email').value;
+            const phone = document.getElementById('float-phone').value;
+            const message = document.getElementById('float-message').value;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: telegramMessage,
-        parse_mode: "Markdown",
-      }),
-    })
-    .then(response => {
-      if (response.ok) {
-        alert("Your request has been sent. We'll contact you soon!");
-        document.getElementById("contactForm").reset();
-      } else {
-        alert("Failed to send message. Try again later.");
-      }
-    })
-    .catch(error => {
-      console.error("Error sending message", error);
-      alert("Error occurred. Try again later.");
-    });
-  });
+            const mailto = `mailto:leo4165259960@gmail.com?subject=Request Consultation from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+            window.location.href = mailto;
+
+            floatForm.reset();
+            floatingForm.classList.remove('active');
+        });
+
         // Mobile Navigation Toggle
         const mobileToggle = document.querySelector('.mobile-toggle');
         const nav = document.querySelector('nav');
-        
+
         mobileToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
             mobileToggle.querySelector('i').classList.toggle('fa-bars');
             mobileToggle.querySelector('i').classList.toggle('fa-times');
         });
-        
+
         // Close mobile menu when clicking a link
         const navLinks = document.querySelectorAll('nav a');
         navLinks.forEach(link => {
@@ -1262,33 +1280,22 @@
                 mobileToggle.querySelector('i').classList.remove('fa-times');
             });
         });
-        
-        // Form submission
+
+        // Contact form submission (redirect to email)
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for your message! We will contact you shortly.');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            const mailto = `mailto:leo4165259960@gmail.com?subject=Request Consultation from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+            window.location.href = mailto;
+
             contactForm.reset();
         });
-        
-        // WhatsApp button functionality
-        const whatsappBtn = document.querySelector('.whatsapp');
-        whatsappBtn.addEventListener('click', () => {
-            window.open('https://wa.me/14165259960', '_blank');
-        });
-        
-        // Phone button functionality
-        const phoneBtn = document.querySelector('.phone');
-        phoneBtn.addEventListener('click', () => {
-            window.location.href = 'tel:+14165259960';
-        });
-        
-        // Email button functionality
-        const emailBtn = document.querySelector('.email');
-        emailBtn.addEventListener('click', () => {
-            window.location.href = 'mailto:leo4165259960@gmail.com';
-        });
-        
+
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
@@ -1300,6 +1307,17 @@
                 header.style.background = 'white';
             }
         });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
     </script>
 </body>
 </html>
